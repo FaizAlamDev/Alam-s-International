@@ -8,6 +8,8 @@ links and contact/map details.
 The site is plain HTML, CSS and JavaScript. There is no build step and no
 framework or package install.
 
+**Live domain:** https://alamsinternational.com/ (hosted on Netlify)
+
 ## Preview locally
 
 From the project folder:
@@ -27,6 +29,8 @@ Upload these files/folders, preserving the structure:
 index.html
 thank-you.html
 site.webmanifest
+robots.txt
+sitemap.xml
 assets/
 ```
 
@@ -109,18 +113,51 @@ confirmation:
 
 ## Domain and SEO
 
-When the production domain is known:
+The site is prepared for **https://alamsinternational.com/**. The head of
+`index.html` already contains:
 
-1. Make `og:image` an absolute URL in `index.html`, for example:
-   `https://www.example.com/assets/img/og-image.jpg`.
-2. Add `<link rel="canonical" href="https://www.example.com/">`.
-3. Add `<meta property="og:url" content="https://www.example.com/">`.
-4. Optionally add `"url"` and `"image"` to the `LocalBusiness` JSON-LD block.
-5. Check the social preview with a tool such as the Facebook Sharing Debugger
-   or LinkedIn Post Inspector.
+- `<link rel="canonical" href="https://alamsinternational.com/">`
+- `og:url`, `og:image`, `og:image:alt` and `og:locale` as absolute URLs
+- `twitter:card`, `twitter:title`, `twitter:description` and `twitter:image`
+- `"url"` and `"image"` in the `LocalBusiness` JSON-LD block
 
-The page currently uses a relative `og:image`, which is convenient on a
-staging server but should not be left relative in production.
+`robots.txt` and `sitemap.xml` also point at the same domain.
+
+If the domain ends up served on `www.` instead, change the four places above
+plus `robots.txt` and `sitemap.xml` to `https://www.alamsinternational.com/`,
+and set the apex to redirect to `www` in Netlify (Site settings → Domains →
+Domain management) so only one URL is indexed.
+
+After the domain is live:
+
+1. Check the social preview with a tool such as the Facebook Sharing
+   Debugger or LinkedIn Post Inspector.
+2. Submit `https://alamsinternational.com/sitemap.xml` in Google Search
+   Console, and verify the domain with Bing Webmaster Tools too.
+3. Re-test the quote form from the final domain.
+
+## Deploying to Netlify
+
+The repo root is the publish directory — there is no build step.
+
+- `netlify.toml` sets cache headers: fonts are immutable for a year, images
+  and the catalogue PDF for a week, and HTML/CSS/JS always revalidate so
+  content edits go live immediately. It also sets baseline security headers.
+- `.netlifyignore` keeps the 25 MB source catalogue, the client brief, the
+  original JPEGs and the internal docs out of the deploy, so the published
+  site is about 4 MB.
+
+To connect the domain once it is purchased:
+
+1. Netlify → Site settings → Domains → Add custom domain →
+   `alamsinternational.com`.
+2. At the domain registrar, set the DNS records Netlify shows. For a domain
+   registered elsewhere the usual records are:
+   - `A` `@` → `75.2.60.5` and `A` `@` → `99.83.190.102`
+   - `CNAME` `www` → `your-site-name.netlify.app`
+   (or point the nameservers at Netlify DNS and let Netlify manage them)
+3. Wait for DNS to propagate, then Netlify provisions the HTTPS certificate
+   automatically. Confirm the certificate is active before announcing the URL.
 
 ## Editing the site
 
