@@ -388,6 +388,18 @@ h2 {
   text-transform: uppercase;
 }
 
+.topbar-place {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  font-size: 9px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(244, 239, 228, .58);
+}
+
 .topbar a {
   transition: color .2s;
 }
@@ -3662,17 +3674,26 @@ dialog::backdrop {
     width: calc(100% - 44px);
   }
 
+  .topbar {
+    display: block;
+  }
+
   .topbar-note {
+    display: none;
+  }
+
+  .topbar-place {
+    display: flex;
+    justify-content: center;
+  }
+
+  .topbar-links {
     display: none;
   }
 
   .topbar-inner {
     justify-content: center;
-    min-height: 36px;
-  }
-
-  .topbar-links a:last-child {
-    display: none;
+    min-height: 34px;
   }
 
   .topbar-sep {
