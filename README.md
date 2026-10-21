@@ -6,9 +6,9 @@ leather-goods manufacturer in Kanpur, India.
 **Live:** https://alamsinternational.com/
 
 A single-page site built with plain HTML, CSS and JavaScript. There is no
-build step, no framework and no package install. Fonts, imagery and the
-catalogue PDF are all self-hosted, so the site has no runtime dependencies
-and loads quickly on a slow connection.
+framework and no package install; the only build command removes the README
+from the deploy. Fonts, imagery and the catalogue PDF are all self-hosted, so
+the site has no runtime dependencies and loads quickly on a slow connection.
 
 ---
 
@@ -67,8 +67,8 @@ assets/img/                   Factory photos, eagle mark, favicons, OG image
 
 ## Deploying
 
-The repo root is the publish directory — there is no build step. Upload
-these, preserving the structure:
+The repo root is the publish directory. Upload these, preserving the
+structure:
 
 ```text
 index.html  thank-you.html  site.webmanifest  robots.txt  sitemap.xml  assets/
@@ -80,6 +80,10 @@ cPanel. Serve over HTTPS.
 `netlify.toml` sets cache headers — fonts are immutable for a year, images
 and the catalogue PDF for a week, and HTML/CSS/JS always revalidate so
 content edits go live immediately — plus baseline security headers.
+
+Netlify has no `.netlifyignore` and publishes everything in the publish
+directory, so `netlify.toml` uses a one-line build command — `rm -f README.md`
+— to delete the README from the deploy before it is uploaded.
 
 For the domain, `index.html` already contains the canonical URL, the Open
 Graph tags and the JSON-LD `url` for `https://alamsinternational.com/`, and

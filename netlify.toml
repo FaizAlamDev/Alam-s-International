@@ -3,6 +3,7 @@
 
 [build]
   publish = "."
+  command = "rm -f README.md"
 
 # Long-lived caching for self-hosted assets
 [[headers]]
@@ -44,3 +45,4 @@
     X-Frame-Options = "SAMEORIGIN"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
