@@ -1,5 +1,6 @@
 # Alam’s International — Netlify configuration
-# Static site: no build step, the repo root is the publish directory.
+# Static site: the repo root is the publish directory. The only build command
+# removes the README, which Netlify would otherwise publish with the site.
 
 [build]
   publish = "."

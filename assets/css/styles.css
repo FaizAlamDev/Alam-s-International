@@ -3074,6 +3074,30 @@ h2 {
   color: rgba(244, 239, 228, .36);
 }
 
+/* ---------- 404 page ---------- */
+
+.notfound-code {
+  display: block;
+  margin: 0 auto 30px;
+  font-family: var(--font-display);
+  font-size: clamp(4.75rem, 14vw, 9rem);
+  font-weight: 600;
+  line-height: .85;
+  letter-spacing: .05em;
+  text-indent: .05em;
+  color: rgba(192, 154, 91, .08);
+  -webkit-text-stroke: 1px rgba(192, 154, 91, .55);
+}
+
+.notfound-brand {
+  text-decoration: none;
+  transition: opacity .2s ease;
+}
+
+.notfound-brand:hover {
+  opacity: .8;
+}
+
 /* ---------- Dialogs ---------- */
 
 dialog {

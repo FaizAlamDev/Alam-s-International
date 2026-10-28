@@ -54,6 +54,7 @@ PDF, fonts and web manifest resolve correctly.
 ```text
 index.html                    The whole page
 thank-you.html                Confirmation shown after a form submission with a file
+404.html                      Not-found page, served by Netlify for missing URLs
 site.webmanifest              PWA / browser metadata
 robots.txt, sitemap.xml       Search-engine metadata
 netlify.toml                  Cache and security headers
@@ -71,7 +72,7 @@ The repo root is the publish directory. Upload these, preserving the
 structure:
 
 ```text
-index.html  thank-you.html  site.webmanifest  robots.txt  sitemap.xml  assets/
+index.html  thank-you.html  404.html  site.webmanifest  robots.txt  sitemap.xml  assets/
 ```
 
 Any static host works: Netlify, Vercel, Cloudflare Pages, GitHub Pages or
@@ -187,6 +188,9 @@ delivered.
 
 ## Notes
 
+- `404.html` is served for any missing URL, at whatever depth it was requested,
+  so every asset and link in it starts at the site root (`/assets/…`, `/`).
+  Keep those paths absolute if you edit it — relative ones break under `/a/b/`.
 - Product quick views use the native `<dialog>` element.
 - The catalogue viewer is loaded lazily on desktop; mobile shows a cover with
   download and open-in-browser links instead of an embedded iframe.
